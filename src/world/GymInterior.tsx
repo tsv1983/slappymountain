@@ -4,6 +4,8 @@ import { PALETTE } from "../config/palette";
 import { TreadmillProp } from "./TreadmillProp";
 import { DeadliftProp } from "./DeadliftProp";
 
+const P = PALETTE;
+
 export function GymInterior() {
   const W = 28;
   const D = 24;
@@ -12,104 +14,104 @@ export function GymInterior() {
 
   return (
     <group>
-      {/* Floor */}
+      {/* Wood floor */}
       <mesh receiveShadow position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[W, D]} />
-        <meshStandardMaterial color="#fef3c7" roughness={0.75} />
+        <meshStandardMaterial color={P.woodLight} roughness={0.72} />
       </mesh>
+      {/* Floor planks — dark lines */}
+      {Array.from({ length: 10 }, (_, i) => (
+        <mesh key={`fp${i}`} position={[-W / 2 + (i + 1) * (W / 11), 0.03, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[0.04, D]} />
+          <meshStandardMaterial color={P.woodDark} transparent opacity={0.3} />
+        </mesh>
+      ))}
 
-      {/* Left wall (strength side) */}
+      {/* Walls — warm plaster with wood trim */}
       <mesh castShadow position={[-(W / 2 + wallT / 2), H / 2, 0]}>
         <boxGeometry args={[wallT, H, D]} />
-        <meshStandardMaterial color={PALETTE.gymWall} roughness={0.55} />
+        <meshStandardMaterial color={P.buildingWall} roughness={0.6} />
       </mesh>
-      {/* Right wall (treadmill side) */}
       <mesh castShadow position={[W / 2 + wallT / 2, H / 2, 0]}>
         <boxGeometry args={[wallT, H, D]} />
-        <meshStandardMaterial color={PALETTE.gymWall} roughness={0.55} />
+        <meshStandardMaterial color={P.buildingWall} roughness={0.6} />
       </mesh>
-      {/* Back wall with gap for back door */}
+
+      {/* Back wall with door gap */}
       <mesh castShadow position={[-(W / 4 + 1.5), H / 2, -(D / 2 + wallT / 2)]}>
         <boxGeometry args={[W / 2 - 1, H, wallT]} />
-        <meshStandardMaterial color={PALETTE.gymWall} roughness={0.55} />
+        <meshStandardMaterial color={P.buildingWall} roughness={0.6} />
       </mesh>
       <mesh castShadow position={[W / 4 + 1.5, H / 2, -(D / 2 + wallT / 2)]}>
         <boxGeometry args={[W / 2 - 1, H, wallT]} />
-        <meshStandardMaterial color={PALETTE.gymWall} roughness={0.55} />
+        <meshStandardMaterial color={P.buildingWall} roughness={0.6} />
       </mesh>
-      {/* Front wall with gap for front door */}
+
+      {/* Front wall with door gap */}
       <mesh castShadow position={[-(W / 4 + 1.5), H / 2, D / 2 + wallT / 2]}>
         <boxGeometry args={[W / 2 - 1, H, wallT]} />
-        <meshStandardMaterial color="#fda4af" roughness={0.5} />
+        <meshStandardMaterial color={P.buildingWallWarm} roughness={0.55} />
       </mesh>
       <mesh castShadow position={[W / 4 + 1.5, H / 2, D / 2 + wallT / 2]}>
         <boxGeometry args={[W / 2 - 1, H, wallT]} />
-        <meshStandardMaterial color="#fda4af" roughness={0.5} />
+        <meshStandardMaterial color={P.buildingWallWarm} roughness={0.55} />
       </mesh>
 
-      {/* Front door frame highlight */}
-      <mesh position={[0, 1.5, D / 2 + 0.05]}>
-        <boxGeometry args={[4, 3, 0.15]} />
-        <meshStandardMaterial
-          color="#22d3ee"
-          emissive="#0891b2"
-          emissiveIntensity={0.3}
-          transparent
-          opacity={0.6}
-        />
+      {/* Wood trim at base of all walls */}
+      <mesh position={[0, 0.3, 0]}>
+        <boxGeometry args={[W + 1.2, 0.6, D + 1.2]} />
+        <meshStandardMaterial color={P.wood} roughness={0.8} transparent opacity={0.4} />
       </mesh>
-      <Text position={[0, 3.4, D / 2 + 0.1]} fontSize={0.35} color="#0f172a" anchorX="center">
+
+      {/* Front door — noren / curtain accent */}
+      <mesh position={[0, 2.2, D / 2 + 0.05]}>
+        <boxGeometry args={[4, 0.7, 0.08]} />
+        <meshStandardMaterial color={P.awningRed} roughness={0.55} />
+      </mesh>
+      <mesh position={[0, 1.2, D / 2 + 0.05]}>
+        <boxGeometry args={[4, 2.4, 0.1]} />
+        <meshStandardMaterial color={P.woodDark} transparent opacity={0.4} roughness={0.6} />
+      </mesh>
+      <Text position={[0, 3.4, D / 2 + 0.1]} fontSize={0.35} color={P.uiInk} anchorX="center">
         FRONT EXIT
       </Text>
 
-      {/* Back door frame highlight */}
-      <mesh position={[0, 1.5, -(D / 2 + 0.05)]}>
-        <boxGeometry args={[4, 3, 0.15]} />
-        <meshStandardMaterial
-          color="#a78bfa"
-          emissive="#7c3aed"
-          emissiveIntensity={0.25}
-          transparent
-          opacity={0.6}
-        />
+      {/* Back door */}
+      <mesh position={[0, 1.2, -(D / 2 + 0.05)]}>
+        <boxGeometry args={[4, 2.4, 0.1]} />
+        <meshStandardMaterial color={P.woodDark} transparent opacity={0.4} roughness={0.6} />
       </mesh>
-      <Text position={[0, 3.4, -(D / 2 + 0.1)]} fontSize={0.35} color="#0f172a" anchorX="center">
+      <Text position={[0, 3.4, -(D / 2 + 0.1)]} fontSize={0.35} color={P.uiInk} anchorX="center">
         BACK EXIT
       </Text>
 
       {/* Overhead sign */}
-      <Text
-        position={[0, 5.5, 0]}
-        fontSize={0.65}
-        color={PALETTE.uiInk}
-        anchorX="center"
-        anchorY="middle"
-      >
+      <Text position={[0, 5.5, 0]} fontSize={0.6} color={P.uiInk} anchorX="center" anchorY="middle">
         POWER PEAK GYM
       </Text>
 
-      {/* Side labels */}
-      <Text position={[-10, 3, 0]} fontSize={0.4} color="#dc2626" anchorX="center" rotation={[0, Math.PI / 2, 0]}>
+      {/* Side labels — painted on wall */}
+      <Text position={[-10, 3, 0]} fontSize={0.4} color={P.signRed} anchorX="center" rotation={[0, Math.PI / 2, 0]}>
         STRENGTH
       </Text>
-      <Text position={[10, 3, 0]} fontSize={0.4} color="#0ea5e9" anchorX="center" rotation={[0, -Math.PI / 2, 0]}>
+      <Text position={[10, 3, 0]} fontSize={0.4} color={P.signGreen} anchorX="center" rotation={[0, -Math.PI / 2, 0]}>
         STAMINA
       </Text>
 
-      {/* Indoor lighting markers (floor spotlights) */}
+      {/* Floor spotlights — warm */}
       <mesh position={[-8, 0.04, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[2.2, 24]} />
-        <meshStandardMaterial color="#fecaca" transparent opacity={0.25} roughness={1} />
+        <meshStandardMaterial color={P.signYellow} transparent opacity={0.12} roughness={1} />
       </mesh>
       <mesh position={[8, 0.04, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[2.2, 24]} />
-        <meshStandardMaterial color="#bae6fd" transparent opacity={0.25} roughness={1} />
+        <meshStandardMaterial color={P.signYellow} transparent opacity={0.12} roughness={1} />
       </mesh>
 
       {/* Equipment */}
       {GYM_EQUIPMENT.map((s) => (
         <group key={s.id} position={s.position} rotation={[0, s.rotationY, 0]}>
-          <Text position={[0, 2.4, 0]} fontSize={0.38} color="#0f172a" anchorX="center">
+          <Text position={[0, 2.4, 0]} fontSize={0.38} color={P.uiInk} anchorX="center">
             {s.label} — press E
           </Text>
           {s.kind === "treadmill" ? (
@@ -120,9 +122,9 @@ export function GymInterior() {
         </group>
       ))}
 
-      {/* Indoor point lights */}
-      <pointLight position={[-8, 5, 0]} intensity={0.5} color="#fde68a" />
-      <pointLight position={[8, 5, 0]} intensity={0.5} color="#bae6fd" />
+      {/* Warm interior lights */}
+      <pointLight position={[-8, 5, 0]} intensity={0.5} color="#f5d8a8" />
+      <pointLight position={[8, 5, 0]} intensity={0.5} color="#f5d8a8" />
       <pointLight position={[0, 5, 0]} intensity={0.3} color="#ffffff" />
     </group>
   );

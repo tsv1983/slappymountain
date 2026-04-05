@@ -17,7 +17,6 @@ export interface MountainDef {
   shape: MountainShape;
 }
 
-/** Gym at origin — paths radiate to peaks */
 export const MOUNTAINS: MountainDef[] = [
   {
     id: "mole-hill",
@@ -28,9 +27,9 @@ export const MOUNTAINS: MountainDef[] = [
     maxHealth: 34,
     baseCoins: 14,
     scale: 0.62,
-    color: "#6ee7b7",
-    rockColor: "#57534e",
-    rimColor: "#34d399",
+    color: "#8a9a6a",
+    rockColor: "#5a5048",
+    rimColor: "#6a7a4a",
     shape: "cone",
   },
   {
@@ -42,9 +41,9 @@ export const MOUNTAINS: MountainDef[] = [
     maxHealth: 72,
     baseCoins: 24,
     scale: 0.82,
-    color: "#4ade80",
-    rockColor: "#44403c",
-    rimColor: "#22c55e",
+    color: "#7a8a58",
+    rockColor: "#4a4038",
+    rimColor: "#5a7a38",
     shape: "mesa",
   },
   {
@@ -56,9 +55,9 @@ export const MOUNTAINS: MountainDef[] = [
     maxHealth: 130,
     baseCoins: 48,
     scale: 1.05,
-    color: "#2dd4bf",
-    rockColor: "#292524",
-    rimColor: "#14b8a6",
+    color: "#6a7a80",
+    rockColor: "#3a3430",
+    rimColor: "#5a6a70",
     shape: "spire",
   },
   {
@@ -70,9 +69,9 @@ export const MOUNTAINS: MountainDef[] = [
     maxHealth: 240,
     baseCoins: 88,
     scale: 1.28,
-    color: "#22c55e",
-    rockColor: "#1c1917",
-    rimColor: "#15803d",
+    color: "#6a6a5a",
+    rockColor: "#2a2820",
+    rimColor: "#5a5a48",
     shape: "twin",
   },
   {
@@ -84,9 +83,9 @@ export const MOUNTAINS: MountainDef[] = [
     maxHealth: 400,
     baseCoins: 145,
     scale: 1.48,
-    color: "#10b981",
-    rockColor: "#0c0a09",
-    rimColor: "#059669",
+    color: "#5a7070",
+    rockColor: "#1e1c18",
+    rimColor: "#4a6060",
     shape: "spire",
   },
 ];

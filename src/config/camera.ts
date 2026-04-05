@@ -1,10 +1,10 @@
-/** High-angle overworld follow */
+/** Diorama-style overworld — higher, more isometric feel */
 export const OVERWORLD_CAMERA = {
-  height: 26,
-  distanceZ: 19,
-  slightX: 0.35,
-  lookAtY: 0.85,
-  lerp: 7,
+  height: 32,
+  distanceZ: 22,
+  slightX: 2,
+  lookAtY: 0.5,
+  lerp: 6,
 } as const;
 
 /** Indoor gym camera — lower, tighter */

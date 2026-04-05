@@ -1,11 +1,11 @@
 :root {
   color-scheme: light;
-  --ui-bg: rgba(255, 255, 255, 0.92);
-  --ui-border: rgba(30, 41, 59, 0.12);
-  --ui-text: #1e293b;
-  --ui-accent: #6366f1;
-  --ui-success: #22c55e;
-  --ui-warn: #f59e0b;
+  --ui-bg: rgba(245, 240, 232, 0.94);
+  --ui-border: rgba(90, 80, 68, 0.18);
+  --ui-text: #2a2420;
+  --ui-accent: #a53a28;
+  --ui-success: #2d5a3d;
+  --ui-warn: #e8b830;
 }
 
 * {
@@ -21,7 +21,7 @@ body,
   height: 100%;
   overflow: hidden;
   font-family: "Nunito", system-ui, sans-serif;
-  background: linear-gradient(180deg, #7dd3fc 0%, #bae6fd 45%, #e0f2fe 100%);
+  background: #c8c3b8;
 }
 
 canvas {

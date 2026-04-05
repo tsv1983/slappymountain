@@ -6,7 +6,7 @@ function Fallback3D() {
   return (
     <mesh>
       <boxGeometry args={[2, 2, 2]} />
-      <meshBasicMaterial color="#f472b6" wireframe />
+      <meshBasicMaterial color="#a53a28" wireframe />
     </mesh>
   );
 }
@@ -15,8 +15,12 @@ export function GameCanvas() {
   return (
     <Canvas
       shadows
-      camera={{ position: [0, 28, 22], fov: 48, near: 0.1, far: 500 }}
-      gl={{ antialias: true }}
+      camera={{ position: [4, 34, 26], fov: 42, near: 0.1, far: 400 }}
+      gl={{
+        antialias: true,
+        toneMapping: 4,
+        toneMappingExposure: 1.05,
+      }}
     >
       <Suspense fallback={<Fallback3D />}>
         <GameWorld />

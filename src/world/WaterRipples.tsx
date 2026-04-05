@@ -95,7 +95,7 @@ export function WaterRipples() {
         <mesh key={i} rotation={[-Math.PI / 2, 0, 0]} visible={false}>
           <ringGeometry args={[0.85, 1, 32]} />
           <meshBasicMaterial
-            color="#bae6fd"
+            color="#a0c8d8"
             transparent
             opacity={0}
             side={THREE.DoubleSide}

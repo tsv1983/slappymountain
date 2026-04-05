@@ -1,28 +1,35 @@
-import { Sky } from "@react-three/drei";
 import { PALETTE } from "../config/palette";
 
 export function WorldLighting() {
   return (
     <>
-      <color attach="background" args={[PALETTE.skyBottom]} />
-      <fog attach="fog" args={[PALETTE.skyBottom, 55, 190]} />
-      <Sky sunPosition={[50, 80, 40]} turbidity={0.45} mieCoefficient={0.004} />
-      <ambientLight intensity={0.65} />
+      <color attach="background" args={[PALETTE.bg]} />
+      <fog attach="fog" args={[PALETTE.bg, 90, 180]} />
+
+      <ambientLight intensity={0.4} color="#f5efe6" />
+
+      {/* Key light — strong directional from upper-left like the reference */}
       <directionalLight
         castShadow
-        position={[40, 70, 28]}
-        intensity={1.25}
+        position={[-35, 55, 30]}
+        intensity={1.6}
+        color="#fff5e8"
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
-        shadow-camera-left={-100}
-        shadow-camera-right={100}
-        shadow-camera-top={100}
-        shadow-camera-bottom={-100}
+        shadow-camera-left={-80}
+        shadow-camera-right={80}
+        shadow-camera-top={80}
+        shadow-camera-bottom={-80}
         shadow-camera-near={0.5}
-        shadow-camera-far={240}
+        shadow-camera-far={200}
+        shadow-bias={-0.001}
       />
-      <hemisphereLight args={["#bae6fd", PALETTE.grassDark, 0.45]} />
-      <pointLight position={[-30, 24, -20]} intensity={0.35} color="#fde68a" />
+
+      {/* Warm fill from below — keeps undersides readable */}
+      <hemisphereLight args={["#f5e8d8", "#8a8474", 0.35]} />
+
+      {/* Subtle warm backlight for depth */}
+      <directionalLight position={[30, 20, -40]} intensity={0.25} color="#e8c890" />
     </>
   );
 }

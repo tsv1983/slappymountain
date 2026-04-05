@@ -47,9 +47,9 @@ export function HUD() {
         }}
       >
         <div style={{ fontWeight: 800, fontSize: 18, color: "var(--ui-text)" }}>
-          Break a Mountain <span style={{ color: "#db2777" }}>v2</span>
+          Break a Mountain <span style={{ color: "var(--ui-accent)" }}>v2</span>
         </div>
-        <div style={{ marginTop: 8, fontSize: 15, color: "#334155" }}>
+        <div style={{ marginTop: 8, fontSize: 15, color: "#4a4038" }}>
           <div>
             Strength: <b>{Math.floor(strength)}</b>
           </div>
@@ -61,12 +61,12 @@ export function HUD() {
           </div>
           <div style={{ marginTop: 6 }}>
             Pet:{" "}
-            <b style={{ color: pet ? "#6366f1" : "#94a3b8" }}>
+            <b style={{ color: pet ? "#a53a28" : "#8a837a" }}>
               {pet?.name ?? "None"}
             </b>
           </div>
           {cooldownLeft > 0 && (
-            <div style={{ marginTop: 4, color: "#0ea5e9", fontSize: 13 }}>
+            <div style={{ marginTop: 4, color: "#7aabba", fontSize: 13 }}>
               Treadmill: {cooldownLeft.toFixed(1)}s
             </div>
           )}
@@ -76,14 +76,14 @@ export function HUD() {
       <div
         style={{
           alignSelf: "center",
-          background: "rgba(255,255,255,0.9)",
+          background: "rgba(245,240,232,0.92)",
           border: "1px solid var(--ui-border)",
           borderRadius: 12,
           padding: "10px 16px",
           maxWidth: 520,
           textAlign: "center",
           fontWeight: 700,
-          color: "#0f172a",
+          color: "#2a2420",
         }}
       >
         {lastHint}
@@ -97,7 +97,7 @@ export function HUD() {
           borderRadius: 12,
           padding: "10px 14px",
           fontSize: 13,
-          color: "#475569",
+          color: "#5a5048",
           maxWidth: 440,
         }}
       >
