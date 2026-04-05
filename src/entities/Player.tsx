@@ -301,13 +301,13 @@ export function Player({
       <group>
         {/* Body */}
         <mesh castShadow position={[0, 0.55, 0]}>
-          <capsuleGeometry args={[0.52, 0.85, 6, 12]} />
-          <meshStandardMaterial color="#38bdf8" roughness={0.32} metalness={0.12} />
+          <capsuleGeometry args={[0.52, 0.85, 12, 24]} />
+          <meshStandardMaterial color="#d4a574" roughness={0.45} />
         </mesh>
         {/* Head */}
         <mesh castShadow position={[0, 1.18, 0]}>
-          <sphereGeometry args={[0.44, 16, 16]} />
-          <meshStandardMaterial color="#fecdd3" roughness={0.38} />
+          <sphereGeometry args={[0.44, 24, 24]} />
+          <meshStandardMaterial color="#f0d8c8" roughness={0.42} />
         </mesh>
         {/* Spiky hair */}
         {[0, 1, 2, 3, 4].map((i) => (
@@ -317,19 +317,19 @@ export function Player({
             position={[Math.sin(i) * 0.12, 1.52 + i * 0.04, -0.18]}
             rotation={[0.5, 0, (i - 2) * 0.15]}
           >
-            <coneGeometry args={[0.12, 0.35, 5]} />
-            <meshStandardMaterial color="#1e3a8a" roughness={0.45} />
+            <coneGeometry args={[0.12, 0.35, 12]} />
+            <meshStandardMaterial color="#2a1a0a" roughness={0.6} />
           </mesh>
         ))}
         {/* Shadow ring */}
         <mesh position={[0, 0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <circleGeometry args={[0.55, 20]} />
-          <meshBasicMaterial color="#0f172a" transparent opacity={0.3} />
+          <circleGeometry args={[0.55, 24]} />
+          <meshBasicMaterial color="#2a2420" transparent opacity={0.2} />
         </mesh>
         {/* Direction pointer */}
         <mesh position={[0, 0.12, 0.62]} rotation={[0.35, 0, 0]}>
-          <coneGeometry args={[0.14, 0.35, 4]} />
-          <meshStandardMaterial color="#facc15" emissive="#f59e0b" emissiveIntensity={0.25} />
+          <coneGeometry args={[0.14, 0.35, 12]} />
+          <meshStandardMaterial color="#e8b830" emissive="#e8a020" emissiveIntensity={0.3} />
         </mesh>
       </group>
     </group>

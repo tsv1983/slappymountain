@@ -8,14 +8,14 @@ function PathStrip({ from, to }: { from: THREE.Vector3; to: THREE.Vector3 }) {
     const mid1 = from.clone().lerp(to, 0.35);
     const mid2 = from.clone().lerp(to, 0.72);
     const curve = new THREE.CatmullRomCurve3([from, mid1, mid2, to]);
-    return new THREE.TubeGeometry(curve, 28, 1.1, 6, false);
+    return new THREE.TubeGeometry(curve, 36, 1.1, 12, false);
   }, [from, to]);
 
   return (
     <mesh geometry={geom}>
       <meshStandardMaterial
         color={PALETTE.path}
-        roughness={0.88}
+        roughness={0.85}
       />
     </mesh>
   );
@@ -26,7 +26,7 @@ function CenterLine({ from, to }: { from: THREE.Vector3; to: THREE.Vector3 }) {
     const mid1 = from.clone().lerp(to, 0.35);
     const mid2 = from.clone().lerp(to, 0.72);
     const curve = new THREE.CatmullRomCurve3([from, mid1, mid2, to]);
-    return new THREE.TubeGeometry(curve, 28, 0.12, 4, false);
+    return new THREE.TubeGeometry(curve, 36, 0.12, 8, false);
   }, [from, to]);
 
   return (

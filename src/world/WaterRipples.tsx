@@ -93,7 +93,7 @@ export function WaterRipples() {
     <group ref={groupRef}>
       {Array.from({ length: POOL }, (_, i) => (
         <mesh key={i} rotation={[-Math.PI / 2, 0, 0]} visible={false}>
-          <ringGeometry args={[0.85, 1, 32]} />
+          <ringGeometry args={[0.85, 1, 48]} />
           <meshBasicMaterial
             color="#a0c8d8"
             transparent
