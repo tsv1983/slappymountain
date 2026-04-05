@@ -13,6 +13,7 @@ import { OverworldCamera } from "./OverworldCamera";
 import { Paths } from "./Paths";
 import { TerrainAndZones } from "./TerrainAndZones";
 import { WorldLighting } from "./WorldLighting";
+import { WaterRipples } from "./WaterRipples";
 import { WorldMarkers } from "./WorldMarkers";
 
 export function GameWorld() {
@@ -31,6 +32,7 @@ export function GameWorld() {
           <WorldMarkers />
           <NatureProps />
           <GymBuilding />
+          <WaterRipples />
           {MOUNTAINS.map((m) => (
             <MountainPeak key={m.id} def={m} />
           ))}

@@ -6,7 +6,7 @@ export const STAT_GROWTH = {
   /** Stamina gained per valid E-press at the treadmill */
   staminaPerPress: 1,
   /** Seconds the player must wait between treadmill presses */
-  treadmillCooldownSec: 10,
+  treadmillCooldownSec: 5,
   statSoftCap: 120,
   coinMultiplier: 1,
 } as const;

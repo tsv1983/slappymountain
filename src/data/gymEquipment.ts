@@ -42,3 +42,24 @@ export const GYM_INTERIOR_BOUNDS = {
   minZ: -11,
   maxZ: 11,
 } as const;
+
+/** Exterior collision AABB — keeps player outside the gym building walls */
+export const GYM_EXTERIOR_FOOTPRINT = {
+  minX: -17.5,
+  maxX: 17.5,
+  minZ: -13.5,
+  maxZ: 13,
+} as const;
+
+/** Front door pass-through zone (player can enter here to trigger gym) */
+export const GYM_FRONT_DOOR_ZONE = {
+  minX: -3,
+  maxX: 3,
+  minZ: 11.5,
+} as const;
+
+/** Water zone: ring between these radii triggers ripple effects */
+export const WATER_ZONE = {
+  innerRadius: 28,
+  outerRadius: 92,
+} as const;

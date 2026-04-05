@@ -1,7 +1,13 @@
 import { useFrame } from "@react-three/fiber";
 import { useLayoutEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
-import { GYM_EQUIPMENT, GYM_DOORS, GYM_INTERIOR_BOUNDS } from "../data/gymEquipment";
+import {
+  GYM_EQUIPMENT,
+  GYM_DOORS,
+  GYM_INTERIOR_BOUNDS,
+  GYM_EXTERIOR_FOOTPRINT,
+  GYM_FRONT_DOOR_ZONE,
+} from "../data/gymEquipment";
 import { MOUNTAINS } from "../data/mountains";
 import { combinePetModifiers } from "../game/petModifiers";
 import { useGameStore } from "../game/store";
@@ -99,6 +105,29 @@ export function Player({
       const limit = 95;
       g.position.x = THREE.MathUtils.clamp(g.position.x, -limit, limit);
       g.position.z = THREE.MathUtils.clamp(g.position.z, -limit, limit);
+
+      const fp = GYM_EXTERIOR_FOOTPRINT;
+      const px = g.position.x;
+      const pz = g.position.z;
+      const inX = px > fp.minX && px < fp.maxX;
+      const inZ = pz > fp.minZ && pz < fp.maxZ;
+      if (inX && inZ) {
+        const inDoor =
+          px > GYM_FRONT_DOOR_ZONE.minX &&
+          px < GYM_FRONT_DOOR_ZONE.maxX &&
+          pz > GYM_FRONT_DOOR_ZONE.minZ;
+        if (!inDoor) {
+          const dL = px - fp.minX;
+          const dR = fp.maxX - px;
+          const dB = pz - fp.minZ;
+          const dF = fp.maxZ - pz;
+          const min = Math.min(dL, dR, dB, dF);
+          if (min === dL) g.position.x = fp.minX;
+          else if (min === dR) g.position.x = fp.maxX;
+          else if (min === dB) g.position.z = fp.minZ;
+          else g.position.z = fp.maxZ;
+        }
+      }
     }
     g.position.y = 0;
 

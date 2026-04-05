@@ -1,5 +1,74 @@
 import { Text } from "@react-three/drei";
+import { useMemo } from "react";
 import { PALETTE } from "../config/palette";
+
+const TERRACOTTA = "#b45630";
+const TERRACOTTA_DARK = "#8b3a1f";
+const ROOF_PITCH = Math.atan2(4, 16);
+const SLOPE_LEN = Math.sqrt(16 * 16 + 4 * 4);
+
+function TerracottaRoof() {
+  const tileRows = useMemo(() => {
+    const rows: JSX.Element[] = [];
+    const count = 7;
+    for (let i = 0; i < count; i++) {
+      const t = (i + 1) / (count + 1);
+      const localZ = -SLOPE_LEN / 2 + t * SLOPE_LEN;
+      rows.push(
+        <mesh key={`f${i}`} position={[0, 0.18, localZ]}>
+          <boxGeometry args={[40, 0.12, 0.18]} />
+          <meshStandardMaterial color={TERRACOTTA_DARK} roughness={0.8} />
+        </mesh>
+      );
+    }
+    return rows;
+  }, []);
+
+  return (
+    <group position={[0, 7.5, 0]}>
+      {/* Front slope */}
+      <group position={[0, 2, 8]} rotation={[-ROOF_PITCH, 0, 0]}>
+        <mesh castShadow>
+          <boxGeometry args={[40, 0.35, SLOPE_LEN]} />
+          <meshStandardMaterial color={TERRACOTTA} roughness={0.72} />
+        </mesh>
+        {tileRows}
+      </group>
+      {/* Back slope */}
+      <group position={[0, 2, -8]} rotation={[ROOF_PITCH, 0, 0]}>
+        <mesh castShadow>
+          <boxGeometry args={[40, 0.35, SLOPE_LEN]} />
+          <meshStandardMaterial color={TERRACOTTA} roughness={0.72} />
+        </mesh>
+        {tileRows}
+      </group>
+      {/* Ridge cap */}
+      <mesh castShadow position={[0, 4, 0]}>
+        <boxGeometry args={[41, 0.5, 1.2]} />
+        <meshStandardMaterial color={TERRACOTTA_DARK} roughness={0.65} />
+      </mesh>
+      {/* Eave trim — front */}
+      <mesh position={[0, 0.1, 16.2]}>
+        <boxGeometry args={[41, 0.4, 0.6]} />
+        <meshStandardMaterial color={TERRACOTTA_DARK} roughness={0.7} />
+      </mesh>
+      {/* Eave trim — back */}
+      <mesh position={[0, 0.1, -16.2]}>
+        <boxGeometry args={[41, 0.4, 0.6]} />
+        <meshStandardMaterial color={TERRACOTTA_DARK} roughness={0.7} />
+      </mesh>
+      {/* Gable ends */}
+      <mesh castShadow position={[-20.2, 2, 0]} rotation={[0, 0, 0]}>
+        <boxGeometry args={[0.4, 4.4, 1.6]} />
+        <meshStandardMaterial color={PALETTE.gymWall} roughness={0.6} />
+      </mesh>
+      <mesh castShadow position={[20.2, 2, 0]}>
+        <boxGeometry args={[0.4, 4.4, 1.6]} />
+        <meshStandardMaterial color={PALETTE.gymWall} roughness={0.6} />
+      </mesh>
+    </group>
+  );
+}
 
 /** Exterior shell — visible on the overworld only */
 export function GymBuilding() {
@@ -26,16 +95,8 @@ export function GymBuilding() {
         <boxGeometry args={[36, 1.2, 28]} />
         <meshStandardMaterial color="#f9a8d4" roughness={0.45} />
       </mesh>
-      {/* Roof */}
-      <mesh castShadow position={[0, 8.4, 0]}>
-        <boxGeometry args={[38, 1.8, 30]} />
-        <meshStandardMaterial
-          color={PALETTE.gymRoof}
-          emissive={PALETTE.gymRoofDeep}
-          emissiveIntensity={0.12}
-          roughness={0.4}
-        />
-      </mesh>
+      {/* Pitched terracotta roof */}
+      <TerracottaRoof />
 
       {/* Sign */}
       <mesh position={[0, 7.6, 13.05]}>
